@@ -4,6 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de Coleta de Dados</title>
+
+    <!-- Scripts do Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-analytics.js"></script>
+    <script>
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyB4FJ4SG1WudIVPOs3HBJ0b7qf7Ev8bHD0",
+            authDomain: "teste-3aeee.firebaseapp.com",
+            projectId: "teste-3aeee",
+            storageBucket: "teste-3aeee.firebasestorage.app",
+            messagingSenderId: "210601358260",
+            appId: "1:210601358260:web:a7949625845d9a2d2bb8e1",
+            measurementId: "G-WPX4P4J448"
+        };
+
+        // Inicializa o Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
 </head>
 <body>
     <h1>Formulário de Coleta de Dados</h1>
