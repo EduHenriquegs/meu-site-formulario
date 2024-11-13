@@ -8,6 +8,7 @@
     <!-- Scripts do Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-firestore.js"></script>
     <script>
         // Configuração do Firebase
         const firebaseConfig = {
@@ -23,6 +24,9 @@
         // Inicializa o Firebase
         firebase.initializeApp(firebaseConfig);
         firebase.analytics();
+
+        // Inicializa o Firestore
+        const db = firebase.firestore();
     </script>
 </head>
 <body>
@@ -39,5 +43,37 @@
         
         <button type="submit">Enviar</button>
     </form>
+
+    <!-- Script para capturar e enviar dados para o Firestore -->
+    <script>
+        // Seleciona o formulário pelo ID
+        const form = document.getElementById('meuForm');
+
+        // Adiciona um evento de escuta para o envio do formulário
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Impede o recarregamento da página
+            
+            // Captura os dados dos campos
+            const nome = form.nome.value;
+            const email = form.email.value;
+            const mensagem = form.mensagem.value;
+
+            try {
+                // Salva os dados no Firestore na coleção 'respostas'
+                await db.collection('respostas').add({
+                    nome: nome,
+                    email: email,
+                    mensagem: mensagem,
+                    dataEnvio: new Date()
+                });
+                
+                alert("Dados enviados com sucesso!");
+                form.reset(); // Limpa o formulário após o envio
+            } catch (error) {
+                console.error("Erro ao enviar dados: ", error);
+                alert("Erro ao enviar dados. Tente novamente.");
+            }
+        });
+    </script>
 </body>
 </html>
