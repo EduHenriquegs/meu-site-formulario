@@ -1,79 +1,48 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Coleta de Dados</title>
-
-    <!-- Scripts do Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-firestore.js"></script>
-    <script>
-        // Configuração do Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyB4FJ4SG1WudIVPOs3HBJ0b7qf7Ev8bHD0",
-            authDomain: "teste-3aeee.firebaseapp.com",
-            projectId: "teste-3aeee",
-            storageBucket: "teste-3aeee.firebasestorage.app",
-            messagingSenderId: "210601358260",
-            appId: "1:210601358260:web:a7949625845d9a2d2bb8e1",
-            measurementId: "G-WPX4P4J448"
-        };
-
-        // Inicializa o Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
-
-        // Inicializa o Firestore
-        const db = firebase.firestore();
-    </script>
+    <title>GESTÃO DE PROJETOS - TPI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 20px;
+            color: #333;
+        }
+        .options-container {
+            margin: 50px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 400px;
+        }
+        a {
+            text-decoration: none;
+            padding: 15px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Formulário de Coleta de Dados</h1>
-    <form id="meuForm" action="https://meuservidor.com/salvarDados" method="POST">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
-        
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" required>
-        
-        <label for="mensagem">Mensagem:</label>
-        <textarea id="mensagem" name="mensagem" required></textarea>
-        
-        <button type="submit">Enviar</button>
-    </form>
-
-    <!-- Script para capturar e enviar dados para o Firestore -->
-    <script>
-        // Seleciona o formulário pelo ID
-        const form = document.getElementById('meuForm');
-
-        // Adiciona um evento de escuta para o envio do formulário
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Impede o recarregamento da página
-            
-            // Captura os dados dos campos
-            const nome = form.nome.value;
-            const email = form.email.value;
-            const mensagem = form.mensagem.value;
-
-            try {
-                // Salva os dados no Firestore na coleção 'respostas'
-                await db.collection('respostas').add({
-                    nome: nome,
-                    email: email,
-                    mensagem: mensagem,
-                    dataEnvio: new Date()
-                });
-                
-                alert("Dados enviados com sucesso!");
-                form.reset(); // Limpa o formulário após o envio
-            } catch (error) {
-                console.error("Erro ao enviar dados: ", error);
-                alert("Erro ao enviar dados. Tente novamente.");
-            }
-        });
-    </script>
+    <h1>GESTÃO DE PROJETOS - TPI</h1>
+    <div class="options-container">
+        <a href="nova-nfi.html">NOVA NFI</a>
+        <a href="cronograma.html">CRONOGRAMA</a>
+        <a href="follow-up.html">FOLLOW-UP</a>
+    </div>
 </body>
 </html>
